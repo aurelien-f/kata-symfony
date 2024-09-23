@@ -71,5 +71,11 @@
 
 ## Etape 7
 
-* Modification du controller Home pour récupérer les films
+* Modification du controller [HomeController.php](src/Controller/HomeController.php) pour récupérer les films
 * Modification du template twig index pour afficher les films dans une table bootstrap
+
+## Etape 8
+
+* Modification de [MovieController.php](src/Controller/MovieController.php)
+* Création d'un template > [detail.html.twig](templates/movie/detail.html.twig)
+* Ajout d'un bouton dans [index.html.twig](templates/home/index.html.twig)

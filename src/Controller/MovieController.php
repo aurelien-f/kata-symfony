@@ -33,4 +33,12 @@ class MovieController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    #[Route('/film/{id}', name: 'movie_detail')]
+    public function detail(Movie $movie): Response
+    {
+        return $this->render('movie/detail.html.twig', [
+            'movie' => $movie,
+        ]);
+    }
 }
