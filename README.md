@@ -47,4 +47,13 @@
 * Configuration du server
   * `symfony server:ca:install`
   * `symfony server:start`
-  
+
+## Etape 5
+
+* Installation de Webpack Encore
+  * `composer require symfony/webpack-encore-bundle`
+  * `pnpm add @symfony/webpack-encore --save-dev`
+  * `pnpm add bootstrap`
+  * `pnpm add @popperjs/core`
+  * `pnpm add sass-loader@^14.0.0 sass --save-dev`
+

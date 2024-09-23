@@ -1,0 +1,14 @@
+{
+  "recommendations": [
+      "bmewburn.vscode-intelephense-client", // PHP Intelephense
+      "esbenp.prettier-vscode", // Prettier
+      "xdebug.php-debug", // PHP Debug
+      "formulahendry.auto-rename-tag", // Auto Rename Tag
+      "formulahendry.auto-close-tag", // Auto Close Tag
+      "whatwedo.twig", // Twig Support
+      "pkief.material-icon-theme", // Material Icon Theme
+      "symfony.symfony-vscode", // Symfony Support
+      "dbaeumer.vscode-eslint", // ESLint
+      "thekalinga.bootstrap4-vscode"
+  ]
+}
