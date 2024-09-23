@@ -68,3 +68,8 @@
 * Création du template Twig
   * `src/templates/movie/add.html.twig`
 * Ajout de class bootstrap + label pour le bouton submit
+
+## Etape 7
+
+* Modification du controller Home pour récupérer les films
+* Modification du template twig index pour afficher les films dans une table bootstrap

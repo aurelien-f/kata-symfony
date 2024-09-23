@@ -7,8 +7,30 @@
         <div class="row">
             <div class="col-md-12">
                 <h1 class="display-4">Movie List</h1>
-                <p class="lead">Coming soon, my favorite movies</p>
-                <a href="{{ path('add_movie') }}" class="btn btn-primary mt-3">Add a New Movie</a>
+                <p class="lead">Here are the movies added to the database:</p>
+                <div class="d-flex justify-content-end"><a href="{{ path('add_movie') }}" class="btn btn-primary mt-3 mb-3">Add a New Movie</a></div>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Year</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for movie in movies %}
+                            <tr>
+                                <td>{{ movie.year }}</td>
+                                <td>{{ movie.title }}</td>
+                                <td>{{ movie.type }}</td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="4" class="text-center">No movies found</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
