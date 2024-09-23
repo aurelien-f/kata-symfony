@@ -1,0 +1,25 @@
+{{ form_start(form) }}
+    <div class="form-group mb-4">
+        {{ form_label(form.title) }}
+        {{ form_widget(form.title) }}
+        {{ form_errors(form.title) }}
+    </div>
+    <div class="form-group mb-4">
+        {{ form_label(form.year) }}
+        {{ form_widget(form.year) }}
+        {{ form_errors(form.year) }}
+    </div>
+    <div class="form-group mb-4">
+        {{ form_label(form.type) }}
+        {{ form_widget(form.type) }}
+        {{ form_errors(form.type) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(form.abstract) }}
+        {{ form_widget(form.abstract) }}
+        {{ form_errors(form.abstract) }}
+    </div>
+    <div class="form-group">
+        {{ form_widget(form.save, { 'label': button_label|default('Save') }) }}
+    </div>
+{{ form_end(form) }}

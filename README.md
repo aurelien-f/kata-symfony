@@ -79,3 +79,10 @@
 * Modification de [MovieController.php](src/Controller/MovieController.php)
 * Création d'un template > [detail.html.twig](templates/movie/detail.html.twig)
 * Ajout d'un bouton dans [index.html.twig](templates/home/index.html.twig)
+
+## Etape 9
+
+* Modification de [MovieController.php](src/Controller/MovieController.php)
+* Création d'un composant pour le formulaire > [_movie_form.html.twig](templates/movie/_movie_form.html.twig)
+* Création d'un template > [edit.html.twig](templates/movie/edit.html.twig)
+* Ajout d'un bouton dans [index.html.twig](templates/home/index.html.twig)
