@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Movie;
 use App\Form\MovieType;
+use App\Repository\MovieRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class MovieController extends AbstractController
 {
     #[Route('/film/add', name: 'add_movie')]
-    public function add(Request $request, EntityManagerInterface $entityManager): Response
+    public function add(Request $request, EntityManagerInterface $entityManager, MovieRepository $movieRepository): Response
     {
         $movie = new Movie();
         $form = $this->createForm(MovieType::class, $movie);
@@ -21,10 +22,17 @@ class MovieController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            
+            $existingMovie = $movieRepository->findOneBy(['title' => $movie->getTitle()]);
+            if ($existingMovie) {
+                $this->addFlash('danger', 'A movie with the title already exists!');
+                return $this->redirectToRoute('add_movie');
+            }
+
             $entityManager->persist($movie);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Movie added successfully!');
+            $this->addFlash('success', sprintf('Movie "%s" added successfully!', $movie->getTitle()));
 
             return $this->redirectToRoute('homepage');
         }
@@ -33,7 +41,6 @@ class MovieController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-
     #[Route('/film/{id}', name: 'movie_detail')]
     public function detail(Movie $movie): Response
     {

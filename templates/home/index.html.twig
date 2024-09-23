@@ -4,6 +4,11 @@
 
 {% block body %}
     <div class="container mt-5">
+        {% if app.session.flashBag.has('success') %}
+            {% for message in app.session.flashBag.get('success') %}
+                <twig:alert type="success" message="{{ message }}" />
+            {% endfor %}
+        {% endif %}
         <div class="row">
             <div class="col-md-12">
                 <h1 class="display-4">Movie List</h1>

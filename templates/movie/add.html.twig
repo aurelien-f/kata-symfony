@@ -7,6 +7,11 @@
         <div class="row">
             <div class="col-md-8 offset-md-2">
                 <h1 class="mb-4">Add a new Movie</h1>
+                {% if app.session.flashBag.has('danger') %}
+                    {% for message in app.session.flashBag.get('danger') %}
+                        <twig:alert type="danger" message="{{ message }}" />
+                    {% endfor %}
+                {% endif %}
                 {% include 'movie/_movie_form.html.twig' with { form: form, button_label: 'Submit new movie' } %}
             </div>
         </div>
