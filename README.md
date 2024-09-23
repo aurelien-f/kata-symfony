@@ -42,3 +42,9 @@
   * `.schema movie`
   * `select * from movie;`
 
+## Etape 4
+
+* Configuration du server
+  * `symfony server:ca:install`
+  * `symfony server:start`
+  
