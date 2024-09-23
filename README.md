@@ -57,3 +57,14 @@
   * `pnpm add @popperjs/core`
   * `pnpm add sass-loader@^14.0.0 sass --save-dev`
 
+## Etape 6
+
+* Création du formulaire
+  * `php bin/console make:form MovieType`
+* Configuration du formulaire
+  * `src/Form/MovieType.php`
+* Création du contrôleur pour gérer le formulaire
+  * `src/Controller/MovieController.php`
+* Création du template Twig
+  * `src/templates/movie/add.html.twig`
+* Ajout de class bootstrap + label pour le bouton submit
