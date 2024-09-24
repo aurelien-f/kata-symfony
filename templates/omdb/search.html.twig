@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}OMDB Search{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="mb-4">Search Movies on OMDB</h1>
+        <form method="get" action="{{ path('omdb_search') }}">
+            <div class="form-group">
+                <input type="text" name="q" class="form-control" placeholder="Search for a movie..." value="{{ query }}">
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Search</button>
+        </form>
+        {% if movies is not empty %}
+            <h2 class="mt-5">Results</h2>
+            <p>Total movies found: {{ movies|length }}</p>
+            <div class="row">
+                {% for movie in movies %}
+                    <div class="col-md-3 mb-4">
+                        <div class="card h-100">
+                            <figure class="figure w-100">
+                                <img src="{{ movie.poster }}" class="figure-img object-fit-cover w-100 h-auto" alt="{{ movie.title }}">
+                            </figure>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ movie.title }}</h5>
+                                <p class="card-text">{{ movie.year }} - {{ movie.type }}</p>
+                                <a href="https://www.imdb.com/title/{{ movie.imdbID }}" class="btn btn-primary" target="_blank">View on IMDB</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -13,13 +13,13 @@
                     <li class="list-group-item"><strong>Abstract:</strong> {{ movie.abstract }}</li>
                 </ul>
                 <div class="d-flex justify-content-between">
-                <a href="{{ path('homepage') }}" class="btn btn-secondary mt-3">Back to list</a>
                 <button class="btn btn-danger mt-3" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">Delete</button>
                 {% include 'components/confirm_delete_modal.html.twig' with {
                     path: path('delete_movie', {'id': movie.id}),
                     message: 'Are you sure you want to delete this movie?',
                     csrf_token: csrf_token('delete' ~ movie.id)
                 } %}
+                <a href="{{ path('homepage') }}" class="btn btn-secondary mt-3">Back to list</a>
                 </div>
             </div>
         </div>

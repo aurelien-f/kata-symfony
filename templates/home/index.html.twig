@@ -13,7 +13,10 @@
             <div class="col-md-12">
                 <h1 class="display-4">Movie List</h1>
                 <p class="lead">Here are the movies added to the database:</p>
-                <div class="d-flex justify-content-end"><a href="{{ path('add_movie') }}" class="btn btn-primary mt-3 mb-3">Add a New Movie</a></div>
+                <div class="d-flex justify-content-end gap-3">
+                <a href="{{ path('add_movie') }}" class="btn btn-primary mt-3 mb-3">Add a New Movie</a>
+                <a href="{{ path('omdb_search') }}" class="btn btn-secondary mt-3 mb-3">Search for a Movie</a>
+                </div>
                 <table class="table table-bordered">
                     <thead>
                         <tr>

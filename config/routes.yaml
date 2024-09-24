@@ -7,3 +7,7 @@ controllers:
 homepage:
     path: /
     controller: App\Controller\HomeController::index
+
+omdb_search:
+    path: /omdb
+    controller: App\Controller\OmdbController::searchOmdb
