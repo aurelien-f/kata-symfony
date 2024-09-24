@@ -86,3 +86,18 @@
 * Création d'un composant pour le formulaire > [_movie_form.html.twig](templates/movie/_movie_form.html.twig)
 * Création d'un template > [edit.html.twig](templates/movie/edit.html.twig)
 * Ajout d'un bouton dans [index.html.twig](templates/home/index.html.twig)
+
+## Etape 10
+
+* Ajout d'un bouton de suppression dans [detail.html.twig](templates/movie/detail.html.twig)
+* Création d'un component modal avec Bootstrap pour confirmer la suppression ([modal](templates/components/confirm_delete_modal.html.twig))
+
+## Etape 11
+
+* Intégration de l'API OMDB
+  * Création du client OMDB > [OmdbClient.php](src/Service/OmdbClient.php)
+  * Création du DTO pour les films > [MovieDTO.php](src/Class/MovieDTO.php)
+  * Configuration de la clé API dans le fichier .env.local
+  * Création du contrôleur pour la recherche de films > [OmdbController.php](src/Controller/OmdbController.php)
+  * Création du template Twig pour la recherche de films > [search.html.twig](templates/omdb/search.html.twig)
+  * Ajout de la route pour la recherche de films dans le fichier de configuration des routes > [routes.yaml](config/routes.yaml)
