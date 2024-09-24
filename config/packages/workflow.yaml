@@ -1,0 +1,20 @@
+framework:
+    workflows:
+        movie_status:
+            type: 'state_machine'
+            marking_store:
+                type: 'method'
+                property: 'status'
+            supports:
+                - App\Entity\Movie
+            initial_marking: unseen
+            places:
+                - unseen
+                - seen
+            transitions:
+                watch:
+                    from: unseen
+                    to: seen
+                unwatch:
+                    from: seen
+                    to: unseen

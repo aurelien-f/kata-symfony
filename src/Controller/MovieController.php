@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
-
+use Symfony\Component\Workflow\Registry;
 
 class MovieController extends AbstractController
 {
@@ -88,5 +88,21 @@ class MovieController extends AbstractController
         }
 
         return $this->redirectToRoute('homepage');
+    }
+
+    #[Route('/film/{id}/change-status', name: 'change_movie_status')]
+    public function changeStatus(Movie $movie, Registry $workflowRegistry, EntityManagerInterface $entityManager): Response
+    {
+        $workflow = $workflowRegistry->get($movie, 'movie_status');
+
+        if ($workflow->can($movie, "watch")) {
+            $workflow->apply($movie, "watch");
+        } else if ($workflow->can($movie, "unwatch")) {
+            $workflow->apply($movie, "unwatch");
+        }
+
+        $entityManager->flush();
+
+        return $this->redirectToRoute('movie_detail', ['id' => $movie->getId()]);
     }
 }

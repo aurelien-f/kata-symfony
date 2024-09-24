@@ -117,7 +117,7 @@ class Movie
         return $this->status;
     }
 
-    public function setStatus(string $status): static
+    public function setStatus(string $status): Movie
     {
         $this->status = $status;
 

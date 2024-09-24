@@ -110,3 +110,13 @@
 * Ajout d'une sécurité pour vérifier si le film existe déjà dans la bibliothèque
 * Ajout d'un message flash de succès et d'erreur
 * Ajout d'une image de poster par défaut ou l'image OMDB dans [detail.html.twig](templates/movie/detail.html.twig)
+
+## Etape 14
+
+* mise en place du workflow
+  * `composer require symfony/workflow`
+  * `php bin/console make:workflow`
+  * [workflow.yaml](config/packages/workflow.yaml)
+  * Modification de [detail.html.twig](templates/movie/detail.html.twig) pour ajouter le bouton de changement de statut
+  * Modification de [MovieController.php](src/Controller/MovieController.php) pour gérer le changement de statut, suivi du [tuto](https://grafikart.fr/tutoriels/symfony-workflow-1978)
+  * Création d'un subscriber pour changer la date de vue [MovieStatusChangeSubscriber.php](src/EventSubscriber/MovieStatusChangeSubscriber.php)
