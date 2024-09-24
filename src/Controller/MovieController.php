@@ -16,7 +16,7 @@ use Flasher\Prime\FlasherInterface;
 class MovieController extends AbstractController
 {
     #[Route('/film/add', name: 'add_movie')]
-    public function add(Request $request, EntityManagerInterface $entityManager, MovieRepository $movieRepository, FlasherInterface $flasher): Response
+    public function add(Request $request, EntityManagerInterface $entityManager, MovieRepository $movieRepository): Response
     {
         $movie = new Movie();
         $form = $this->createForm(MovieType::class, $movie);
@@ -31,11 +31,11 @@ class MovieController extends AbstractController
                 $entityManager->persist($movie);
                 $entityManager->flush();
 
-                $flasher->success(sprintf('Movie "%s" added successfully!', $movie->getTitle()));
+                flash()->success(sprintf('Movie "%s" added successfully!', $movie->getTitle()));
 
                 return $this->redirectToRoute('homepage');
             } else {
-                $flasher->error('A movie with this title already exists.');
+                flash()->error('A movie with this title already exists.');
 
                 return $this->redirectToRoute('add_movie');
             }
@@ -64,7 +64,7 @@ class MovieController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            $this->addFlash('success', 'Movie updated successfully!');
+            flash()->success(sprintf('Movie "%s" updated successfully!', $movie->getTitle()));
 
             return $this->redirectToRoute('movie_detail', ['id' => $movie->getId()]);
         }
@@ -73,5 +73,18 @@ class MovieController extends AbstractController
             'form' => $form->createView(),
             'movie' => $movie,
         ]);
+    }
+
+    #[Route('/film/delete/{id}', name: 'delete_movie', methods: ['POST'])]
+    public function delete(Request $request, Movie $movie, EntityManagerInterface $entityManager): Response
+    {
+        if ($this->isCsrfTokenValid('delete' . $movie->getId(), $request->request->get('_token'))) {
+            $entityManager->remove($movie);
+            $entityManager->flush();
+
+            flash()->success(sprintf('Movie "%s" deleted successfully!', $movie->getTitle()));
+        }
+
+        return $this->redirectToRoute('homepage');
     }
 }
