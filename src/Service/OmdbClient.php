@@ -27,4 +27,16 @@ class OmdbClient
     $data = $response->toArray();
     return $data['Search'] ?? [];
   }
+
+  public function getMovieByImdbID(string $imdbID): ?array
+  {
+    $response = $this->httpClient->request('GET', 'https://www.omdbapi.com/', [
+      'query' => [
+        'apikey' => $this->apiKey,
+        'i' => $imdbID,
+      ],
+    ]);
+
+    return $response->toArray() ?? null;
+  }
 }

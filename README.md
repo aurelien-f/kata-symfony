@@ -101,3 +101,12 @@
   * Création du contrôleur pour la recherche de films > [OmdbController.php](src/Controller/OmdbController.php)
   * Création du template Twig pour la recherche de films > [search.html.twig](templates/omdb/search.html.twig)
   * Ajout de la route pour la recherche de films dans le fichier de configuration des routes > [routes.yaml](config/routes.yaml)
+
+## Etape 12 / 13
+
+* Ajout des champs poster, last_played_at et status dans la table movie
+  * Création de la migration
+* Ajout d'un bouton dans [search.html.twig](templates/omdb/search.html.twig) pour ajouter le film à la bibliothèque
+* Ajout d'une sécurité pour vérifier si le film existe déjà dans la bibliothèque
+* Ajout d'un message flash de succès et d'erreur
+* Ajout d'une image de poster par défaut ou l'image OMDB dans [detail.html.twig](templates/movie/detail.html.twig)

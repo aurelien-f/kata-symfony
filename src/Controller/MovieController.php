@@ -24,7 +24,10 @@ class MovieController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $existingMovie = $movieRepository->findOneBy(['title' => $movie->getTitle()]);
+            $existingMovie = $movieRepository->findOneBy([
+                'title' => $movie->getTitle(),
+                'year' => $movie->getYear()
+            ]);
 
             if (!$existingMovie) {
                 $entityManager->persist($movie);
