@@ -12,6 +12,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\MovieRepository;
 
+
 class OmdbController extends AbstractController
 {
   #[Route('/omdb', name: 'omdb_search')]
@@ -56,10 +57,10 @@ class OmdbController extends AbstractController
       $entityManager->persist($movie);
       $entityManager->flush();
 
-      flash()->success(sprintf('Movie "%s - %s" added to your library!', $movie->getTitle(), $movie->getYear()));
+      $this->addFlash('success', sprintf('Movie "%s - %s" added to your library!', $movie->getTitle(), $movie->getYear()));
       return $this->redirectToRoute('homepage');
     } else {
-      flash()->error('Movie already in your library!');
+      $this->addFlash('error', 'Movie already in your library!');
       return $this->redirect($request->headers->get('referer'));
     }
   }
