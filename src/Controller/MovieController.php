@@ -14,6 +14,9 @@ use Symfony\Component\Workflow\Registry;
 
 class MovieController extends AbstractController
 {
+
+    public function __construct(private readonly MovieRepository $movieRepository) {}
+
     #[Route('/film/add', name: 'add_movie')]
     public function add(Request $request, EntityManagerInterface $entityManager, MovieRepository $movieRepository): Response
     {
@@ -49,8 +52,15 @@ class MovieController extends AbstractController
     }
 
     #[Route('/film/{id}', name: 'movie_detail')]
-    public function detail(Movie $movie): Response
+    public function detail(Request $request): Response
     {
+        $movie = $this->movieRepository->find($request->attributes->get('id'));
+
+        if ($movie === null) {
+            // return new Response('Movie not found', Response::HTTP_NOT_FOUND);
+            throw $this->createNotFoundException('Movie not found');
+        }
+
         return $this->render('movie/detail.html.twig', [
             'movie' => $movie,
         ]);
