@@ -21,17 +21,22 @@ class OmdbController extends AbstractController
 
     $query = $request->query->get('q', '');
     $movies = [];
-
+    $message = 'Search a movie with the search bar.';
     if ($query) {
       $results = $omdbClient->searchMovies($query);
       foreach ($results as $result) {
         $movies[] = new MovieDTO($result);
+      }
+
+      if (empty($movies)) {
+        $message = 'No movie found with this title.';
       }
     }
 
     return $this->render('omdb/search.html.twig', [
       'movies' => $movies,
       'query' => $query,
+      'message' => $message,
     ]);
   }
 
